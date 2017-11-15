@@ -1,18 +1,28 @@
 [
     {
-        "id": "526216ab.595068",
+        "id": "36c916b1.698502",
         "type": "comment",
-        "z": "bd7167ef.f55d68",
-        "name": "TEST - Conversation IN",
+        "z": "819c1ddd.9c947",
+        "name": "TEST - dashDB IN",
         "info": "",
-        "x": 130,
-        "y": 41,
+        "x": 110,
+        "y": 960,
         "wires": []
     },
     {
-        "id": "aa0db9da.afa9f8",
+        "id": "60e243e2.6a730c",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "TEST - Conversation IN",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "193d4a4.f54eeb6",
         "type": "inject",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Hola",
         "topic": "",
         "payload": "Hola",
@@ -20,18 +30,18 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 183.0231170654297,
-        "y": 80.38186454772949,
+        "x": 173.0231170654297,
+        "y": 79.38186454772949,
         "wires": [
             [
-                "2953dafd.f3ed56"
+                "c455b9c1.edfce8"
             ]
         ]
     },
     {
-        "id": "bf3c12d0.9398c",
+        "id": "aeca709a.e65208",
         "type": "inject",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Cómo puedo cotizar en el Infonavit.",
         "topic": "",
         "payload": "Cómo puedo cotizar en el Infonavit.",
@@ -39,37 +49,37 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 196.85646057128906,
-        "y": 116.9652099609375,
+        "x": 186.85646057128906,
+        "y": 115.9652099609375,
         "wires": [
             [
-                "2953dafd.f3ed56"
+                "c455b9c1.edfce8"
             ]
         ]
     },
     {
-        "id": "9f9044e7.d617a8",
+        "id": "feffd47e.a83ba",
         "type": "inject",
-        "z": "bd7167ef.f55d68",
-        "name": "Angry feedback",
+        "z": "819c1ddd.9c947",
+        "name": "Bienvenida",
         "topic": "",
-        "payload": "it's really horrendous how badly these nodes are documented - There is absolutely no way any body can follow that! Infuriating!",
+        "payload": "bienvenida",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 155.2731170654297,
-        "y": 153.8818655014038,
+        "x": 125.27311706542969,
+        "y": 152.8818655014038,
         "wires": [
             [
-                "2953dafd.f3ed56"
+                "c455b9c1.edfce8"
             ]
         ]
     },
     {
-        "id": "49ab9ab2.4706a4",
+        "id": "3de5cee.4d981b2",
         "type": "inject",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Happy feedback",
         "topic": "",
         "payload": "These new nodes are awesome! I love the way they are used in the new flows!",
@@ -77,229 +87,365 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 154.7731170654297,
-        "y": 189.63186645507812,
+        "x": 144.7731170654297,
+        "y": 188.63186645507812,
         "wires": [
             [
-                "2953dafd.f3ed56"
+                "c455b9c1.edfce8"
             ]
         ]
     },
     {
-        "id": "2953dafd.f3ed56",
+        "id": "c455b9c1.edfce8",
         "type": "link out",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "testConvIN",
         "links": [
-            "58ff451f.bf471c"
+            "234367e9.84bdf"
         ],
-        "x": 446.4543151855469,
-        "y": 116.13016510009766,
+        "x": 436.4543151855469,
+        "y": 115.13016510009766,
         "wires": []
     },
     {
-        "id": "f1e6a41a.1e17d8",
+        "id": "4a882e1d.c40fd",
         "type": "watson-conversation-v1",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Conversacion",
-        "workspaceid": "5e1c3a5f-fdc0-4bc8-a5c0-5483257c68de",
+        "workspaceid": "667e7f78-290c-41d3-9785-09aaa72cdba8",
         "multiuser": false,
         "context": true,
         "empty-payload": false,
         "default-endpoint": true,
         "service-endpoint": "https://gateway.watsonplatform.net/conversation/api",
-        "x": 230,
-        "y": 469,
+        "x": 220,
+        "y": 468,
         "wires": [
             [
-                "db3070b3.4f384",
-                "cf97a7a3.30b8b8"
+                "8d3137c6.ee3618",
+                "37e81806.851518"
             ]
         ]
     },
     {
-        "id": "58ff451f.bf471c",
+        "id": "234367e9.84bdf",
         "type": "link in",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "",
         "links": [
-            "2953dafd.f3ed56",
-            "810c841b.5f9ab8"
+            "589820cf.2cc7e",
+            "c455b9c1.edfce8"
         ],
-        "x": 73.5,
-        "y": 469,
+        "x": 63.5,
+        "y": 468,
         "wires": [
             [
-                "f1e6a41a.1e17d8"
+                "4a882e1d.c40fd"
             ]
         ]
     },
     {
-        "id": "d771205f.549fe",
+        "id": "e4a06c64.aab988",
         "type": "comment",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Watson Conversation",
         "info": "",
-        "x": 134,
-        "y": 413,
+        "x": 124,
+        "y": 412,
         "wires": []
     },
     {
-        "id": "db3070b3.4f384",
+        "id": "8d3137c6.ee3618",
         "type": "debug",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "LOG Conversation Output",
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 468.5,
-        "y": 417,
+        "x": 458.5,
+        "y": 416,
         "wires": []
     },
     {
-        "id": "995b4b35.21ad68",
+        "id": "d2fede0e.73cf1",
         "type": "comment",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Http Request",
         "info": "",
-        "x": 101,
-        "y": 272,
+        "x": 91,
+        "y": 271,
         "wires": []
     },
     {
-        "id": "de847bc8.75b418",
+        "id": "2670916d.66f506",
         "type": "http in",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Web Bot Vivienda",
         "url": "/webbotvivienda",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 136,
-        "y": 320,
+        "x": 126,
+        "y": 319,
         "wires": [
             [
-                "24e20702.879d28",
-                "12c21f19.2e7291"
+                "6b913a82.55d41c",
+                "b75bce11.604d08"
             ]
         ]
     },
     {
-        "id": "810c841b.5f9ab8",
+        "id": "589820cf.2cc7e",
         "type": "link out",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "testConvIN",
         "links": [
-            "58ff451f.bf471c"
+            "234367e9.84bdf"
         ],
-        "x": 548,
-        "y": 319,
+        "x": 538,
+        "y": 318,
         "wires": []
     },
     {
-        "id": "24e20702.879d28",
+        "id": "6b913a82.55d41c",
         "type": "function",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Set Conversation Input",
         "func": "//SI EL MENSAJE DE ENTRADA ES VACIO ESTABLECE UNA BIENVENIDA\nif (msg.payload.texto===\" \")\n{\n    msg.payload.texto=\"bienvenida\";\n}\n\n//Mensaje\nmsg.payload = msg.payload.texto;\n//Contexto\n//msg.params.context=\n//User\n//msg.user=\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 371.5,
-        "y": 319,
+        "x": 361.5,
+        "y": 318,
         "wires": [
             [
-                "810c841b.5f9ab8"
+                "589820cf.2cc7e"
             ]
         ]
     },
     {
-        "id": "12c21f19.2e7291",
+        "id": "b75bce11.604d08",
         "type": "debug",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "LOG Request",
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 342.5,
-        "y": 274,
+        "x": 332.5,
+        "y": 273,
         "wires": []
     },
     {
-        "id": "7d2400a.c7524",
+        "id": "885af812.a33588",
         "type": "http response",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Http Response",
         "statusCode": "",
         "headers": {},
-        "x": 513,
-        "y": 628,
+        "x": 503,
+        "y": 627,
         "wires": []
     },
     {
-        "id": "a8f39aa7.512048",
+        "id": "c894e6d0.5f52e",
         "type": "comment",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Http Response",
         "info": "",
-        "x": 116,
-        "y": 564,
+        "x": 106,
+        "y": 563,
         "wires": []
     },
     {
-        "id": "cf97a7a3.30b8b8",
+        "id": "37e81806.851518",
         "type": "link out",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "fromConversation",
         "links": [
-            "924f7bc.d2b5988"
+            "1528b979.288387"
         ],
-        "x": 373.5,
-        "y": 468,
+        "x": 363.5,
+        "y": 467,
         "wires": []
     },
     {
-        "id": "924f7bc.d2b5988",
+        "id": "1528b979.288387",
         "type": "link in",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "toHttpResponse",
         "links": [
-            "cf97a7a3.30b8b8"
+            "37e81806.851518"
         ],
-        "x": 70.5,
-        "y": 629,
+        "x": 60.5,
+        "y": 628,
         "wires": [
             [
-                "2b4c51db.9beeee"
+                "cea1c94a.348b38"
             ]
         ]
     },
     {
-        "id": "2b4c51db.9beeee",
+        "id": "cea1c94a.348b38",
         "type": "function",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "Set Conversation Output",
         "func": "//Carga objeto de respuesta\nvar respuesta = {};\nrespuesta.texto = msg.payload.output.text[0];\nrespuesta.contexto = msg.payload.context.conversation_id;\nrespuesta.esSaludo = false;\n\n//Valida si la respuesta es saludo o bienvenida\nif (msg.payload.intents.length===1){\n    if(msg.payload.intents[0].intent === \"saludo\" || msg.payload.intents[0].intent === \"bienvenida\"){\n        respuesta.esSaludo = true;\n    }\n}\n\n//Envia la respuesta como payload\nmsg.payload = respuesta;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 237.5,
-        "y": 629,
+        "x": 227.5,
+        "y": 628,
         "wires": [
             [
-                "7d2400a.c7524",
-                "43dce5b6.365c2c"
+                "885af812.a33588",
+                "7f117af1.a8a6dc"
             ]
         ]
     },
     {
-        "id": "43dce5b6.365c2c",
+        "id": "7f117af1.a8a6dc",
         "type": "debug",
-        "z": "bd7167ef.f55d68",
+        "z": "819c1ddd.9c947",
         "name": "LOG Response",
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 510.5,
-        "y": 579,
+        "x": 500.5,
+        "y": 578,
         "wires": []
+    },
+    {
+        "id": "bb89661.9eef498",
+        "type": "function",
+        "z": "819c1ddd.9c947",
+        "name": "",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 820,
+        "wires": [
+            [
+                "addbc62e.ba77b",
+                "125b3b26.adbeed"
+            ]
+        ]
+    },
+    {
+        "id": "3a19e88.de11c98",
+        "type": "http in",
+        "z": "819c1ddd.9c947",
+        "name": "",
+        "url": "/webfeedback",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 820,
+        "wires": [
+            [
+                "bb89661.9eef498",
+                "c8afd085.897fd"
+            ]
+        ]
+    },
+    {
+        "id": "c8afd085.897fd",
+        "type": "debug",
+        "z": "819c1ddd.9c947",
+        "name": "LOG Feedback",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 320,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "125b3b26.adbeed",
+        "type": "http response",
+        "z": "819c1ddd.9c947",
+        "name": "Http Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 520,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "86030858.5cc518",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "Guarda Feedback",
+        "info": "",
+        "x": 110,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "addbc62e.ba77b",
+        "type": "dashDB out",
+        "z": "819c1ddd.9c947",
+        "dashDB": "e5edfa11.013f58",
+        "service": "_ext_",
+        "table": "BOTFEEDBACK",
+        "name": "",
+        "x": 520,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "5c122470.c11bfc",
+        "type": "inject",
+        "z": "819c1ddd.9c947",
+        "name": "Prueba",
+        "topic": "",
+        "payload": "hola",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 150,
+        "y": 1020,
+        "wires": [
+            [
+                "bc47c022.157438"
+            ]
+        ]
+    },
+    {
+        "id": "359533a9.931b94",
+        "type": "link in",
+        "z": "819c1ddd.9c947",
+        "name": "",
+        "links": [
+            "bc47c022.157438"
+        ],
+        "x": 355,
+        "y": 880,
+        "wires": [
+            [
+                "addbc62e.ba77b"
+            ]
+        ]
+    },
+    {
+        "id": "bc47c022.157438",
+        "type": "link out",
+        "z": "819c1ddd.9c947",
+        "name": "testDashIn",
+        "links": [
+            "359533a9.931b94"
+        ],
+        "x": 255,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "e5edfa11.013f58",
+        "type": "dashDB",
+        "z": "",
+        "hostname": "dashdb-entry-yp-dal09-09.services.dal.bluemix.net",
+        "db": "BLUDB",
+        "port": "50000",
+        "name": "Dash DB Infonavit"
     }
 ]
