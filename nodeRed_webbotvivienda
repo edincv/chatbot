@@ -1,12 +1,12 @@
 [
     {
-        "id": "36c916b1.698502",
+        "id": "c894e6d0.5f52e",
         "type": "comment",
         "z": "819c1ddd.9c947",
-        "name": "TEST - dashDB IN",
+        "name": "Http Response",
         "info": "",
-        "x": 110,
-        "y": 960,
+        "x": 106,
+        "y": 563,
         "wires": []
     },
     {
@@ -246,16 +246,6 @@
         "wires": []
     },
     {
-        "id": "c894e6d0.5f52e",
-        "type": "comment",
-        "z": "819c1ddd.9c947",
-        "name": "Http Response",
-        "info": "",
-        "x": 106,
-        "y": 563,
-        "wires": []
-    },
-    {
         "id": "37e81806.851518",
         "type": "link out",
         "z": "819c1ddd.9c947",
@@ -316,11 +306,11 @@
         "id": "bb89661.9eef498",
         "type": "function",
         "z": "819c1ddd.9c947",
-        "name": "",
-        "func": "\nreturn msg;",
+        "name": "Prepara Registro",
+        "func": "//PREPARA JSON\nmsg.payload =\n{\n    \"CONVID\": msg.payload.convid,\n    \"RATING\": msg.payload.rating,\n    \"DETALLE\": msg.payload.detalle,\n    \"PREGUNTA\": msg.payload.pregunta\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 330,
+        "x": 350,
         "y": 820,
         "wires": [
             [
@@ -333,12 +323,12 @@
         "id": "3a19e88.de11c98",
         "type": "http in",
         "z": "819c1ddd.9c947",
-        "name": "",
+        "name": "Feedback",
         "url": "/webfeedback",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 130,
+        "x": 100,
         "y": 820,
         "wires": [
             [
@@ -355,8 +345,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 320,
-        "y": 740,
+        "x": 340,
+        "y": 760,
         "wires": []
     },
     {
@@ -366,7 +356,7 @@
         "name": "Http Response",
         "statusCode": "",
         "headers": {},
-        "x": 520,
+        "x": 620,
         "y": 820,
         "wires": []
     },
@@ -387,23 +377,33 @@
         "dashDB": "e5edfa11.013f58",
         "service": "_ext_",
         "table": "BOTFEEDBACK",
-        "name": "",
-        "x": 520,
+        "name": "BD Feedback",
+        "x": 620,
         "y": 880,
+        "wires": []
+    },
+    {
+        "id": "36c916b1.698502",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "TEST - dashDB IN",
+        "info": "",
+        "x": 110,
+        "y": 960,
         "wires": []
     },
     {
         "id": "5c122470.c11bfc",
         "type": "inject",
         "z": "819c1ddd.9c947",
-        "name": "Prueba",
+        "name": "Prueba BD",
         "topic": "",
-        "payload": "hola",
+        "payload": "{\"CONVID\":\"conv123\",\"RATING\":\"correcto\",\"DETALLE\":\"prueba detalle\",\"PREGUNTA\":\"como obtengo un credito\"}",
         "payloadType": "json",
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 150,
+        "x": 160,
         "y": 1020,
         "wires": [
             [
@@ -419,7 +419,7 @@
         "links": [
             "bc47c022.157438"
         ],
-        "x": 355,
+        "x": 455,
         "y": 880,
         "wires": [
             [
@@ -435,7 +435,7 @@
         "links": [
             "359533a9.931b94"
         ],
-        "x": 255,
+        "x": 275,
         "y": 1020,
         "wires": []
     },
