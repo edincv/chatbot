@@ -41,10 +41,10 @@ var Api = (function() {
       };
     }
     if (context) {
-      console.log("-----ENVIANDO CONTEXT-----" + context);
-      payloadToWatson.context = context;
-    }
-
+       console.log("-----ENVIANDO CONTEXT-----" + context);
+       payloadToWatson.context = context;
+     }
+    console.log("por llamar url>>"+payloadToWatson);
     // Built http request
     var http = new XMLHttpRequest();
     console.log("por llamar url>>"+text+"<<>>"+context+"<<>>"+payloadToWatson.input.text);
@@ -55,6 +55,10 @@ var Api = (function() {
     //if (Object.getOwnPropertyNames(payloadToWatson).length !== 0) {
       Api.setRequestPayload(params);
     //}
+
+    //EDIN
+    //VARIABLE A STRING
+    //var contextStr = JSON.stringify(context);
 
     http.open('GET', messageEndpoint+"?texto="+text+"&contexto="+context, false);
     console.log("llamo url");

@@ -3,7 +3,7 @@
 /* eslint no-unused-vars: "off" */
 /* global Api: true, Common: true*/
 
-var ConversationPanel = (function() {
+var ConversationPanel = (function () {
   var settings = {
     selectors: {
       chatBox: '#scrollingChat',
@@ -25,36 +25,38 @@ var ConversationPanel = (function() {
   };
 
   //EDIN
-function guardaFeedback(){
-  console.log("Funcion: Guarda Feedback");
-  //OBTIENE EL VALOR DEL RADIO SELECCIONADO
-  var feedRadios = document.getElementsByName('evaluacion');
-  var valorRadio;
-  for(var i = 0; i < feedRadios.length; i++){
-      if(feedRadios[i].checked){
+  function guardaFeedback() {
+    console.log("Funcion: Guarda Feedback");
+    //OBTIENE EL VALOR DEL RADIO SELECCIONADO
+    var feedRadios = document.getElementsByName('evaluacion');
+    var valorRadio;
+    for (var i = 0; i < feedRadios.length; i++) {
+      if (feedRadios[i].checked) {
         valorRadio = feedRadios[i].value;
       }
+    }
+    //OBTIENE EL TEXTO DETALLE
+    var detalleFeedback = document.getElementById("detalleFeedback").value;
+    //OBTIENE LA ULTIMA PREGUNTA
+    var lastUserMsg = document.getElementsByClassName("from-user latest top");
+    var pregunta = lastUserMsg[0].children[0].children[0].innerHTML;
+    //OBTIENE CONVERSATION ID
+    var convid = document.getElementById("convIdAux").value;
+
+    console.log("---FEEDBACK valorRadio: " + valorRadio);
+    console.log("---FEEDBACK detalleFeedback: " + detalleFeedback);
+    console.log("---FEEDBACK pregunta: " + pregunta);
+
+    //VALIDA FEEDBACK
+    if(valorRadio != null && valorRadio != undefined && valorRadio != ""){
+      Api.sendRequestFeedback(convid, valorRadio, detalleFeedback, pregunta);
+    }
+
+    //Recarga la pagina
+    location.reload(true);
+
+    return 0;
   }
-  //OBTIENE EL TEXTO DETALLE
-  var detalleFeedback = document.getElementById("detalleFeedback").value;
-  //OBTIENE LA ULTIMA PREGUNTA
-  var lastUserMsg = document.getElementsByClassName("from-user latest top");
-  var pregunta = lastUserMsg[0].children[0].children[0].innerHTML;
-  //OBTIENE CONVERSATION ID
-  var convid = "1234";
-
-  console.log("---FEEDBACK valorRadio: " + valorRadio);
-  console.log("---FEEDBACK detalleFeedback: " + detalleFeedback);
-  console.log("---FEEDBACK pregunta: " + pregunta);
-  
-  
-  Api.sendRequestFeedback(convid,valorRadio,detalleFeedback,pregunta);
-  
-  //Recarga la pagina
-  location.reload(true);
-
-  return 0;
-}
   /**
    * getMealType determines what meal a user of the app might have eaten most
    * recently. It uses the client's browser time.
@@ -83,7 +85,11 @@ function guardaFeedback(){
     var context = {
       'time': getMealType()
     };
-    Api.sendRequest(' ', context);
+    //EDIN
+    document.getElementById("convIdAux").value= "";
+    //
+
+    Api.sendRequest(' ', '');
     setupInputBox();
   }
 
@@ -92,13 +98,13 @@ function guardaFeedback(){
   // / received
   function chatUpdateSetup() {
     var currentRequestPayloadSetter = Api.setRequestPayload;
-    Api.setRequestPayload = function(newPayloadStr) {
+    Api.setRequestPayload = function (newPayloadStr) {
       currentRequestPayloadSetter.call(Api, newPayloadStr);
       displayMessage(JSON.parse(newPayloadStr), settings.authorTypes.user);
     };
 
     var currentResponsePayloadSetter = Api.setResponsePayload;
-    Api.setResponsePayload = function(newPayloadStr) {
+    Api.setResponsePayload = function (newPayloadStr) {
       currentResponsePayloadSetter.call(Api, newPayloadStr);
       displayMessage(JSON.parse(newPayloadStr), settings.authorTypes.watson);
     };
@@ -120,10 +126,10 @@ function guardaFeedback(){
     if (dummy === null) {
       var dummyJson = {
         'tagName': 'div',
-        'attributes': [ {
+        'attributes': [{
           'name': 'id',
           'value': 'textInputDummy'
-        } ]
+        }]
       };
 
       dummy = Common.buildDomElement(dummyJson);
@@ -141,22 +147,22 @@ function guardaFeedback(){
         // the visible input box to match it (thus extending the underline)
         input.classList.add('underline');
         var txtNode = document.createTextNode(input.value);
-        [ 'font-size', 'font-style', 'font-weight', 'font-family',
-            'line-height', 'text-transform', 'letter-spacing' ]
-            .forEach(function(index) {
-              dummy.style[index] = window.getComputedStyle(input, null)
-                  .getPropertyValue(index);
-            });
+        ['font-size', 'font-style', 'font-weight', 'font-family',
+          'line-height', 'text-transform', 'letter-spacing']
+          .forEach(function (index) {
+            dummy.style[index] = window.getComputedStyle(input, null)
+              .getPropertyValue(index);
+          });
         dummy.textContent = txtNode.textContent;
 
         var padding = 0;
         var htmlElem = document.getElementsByTagName('html')[0];
         var currentFontSize = parseInt(window.getComputedStyle(htmlElem, null)
-            .getPropertyValue('font-size'), 10);
+          .getPropertyValue('font-size'), 10);
         if (currentFontSize) {
           padding = Math.floor((currentFontSize - minFontSize)
-              / (maxFontSize - minFontSize) * (maxPadding - minPadding)
-              + minPadding);
+            / (maxFontSize - minFontSize) * (maxPadding - minPadding)
+            + minPadding);
         } else {
           padding = maxPadding;
         }
@@ -178,41 +184,44 @@ function guardaFeedback(){
 
   // Display a user or Watson message that has just been sent/received
   function displayMessage(newPayload, typeValue) {
-    if (typeValue==="watson")
-    {
-      newPayload=JSON.parse(newPayload);
+    if (typeValue === "watson") {
+      newPayload = JSON.parse(newPayload);
     }
-    console.log("displayMessage: "+newPayload);
-    console.log("displayMessage: "+newPayload.texto);
-    console.log("typeValue: "+typeValue);
+    console.log("displayMessage: " + newPayload);
+    console.log("displayMessage: " + newPayload.texto);
+    console.log("typeValue: " + typeValue);
+
+    //EDIN
+    //GUARDA EL CONVERSATION ID
+    document.getElementById("convIdAux").value = JSON.stringify(newPayload.contexto);
 
     var isUser = isUserMessage(typeValue);
     var textExists = (newPayload.input && newPayload.input.text)
-        || (newPayload.texto);// && newPayload.output.text);
-        console.log("textExists: "+textExists);
+      || (newPayload.texto);// && newPayload.output.text);
+    console.log("textExists: " + textExists);
     if (isUser !== null && textExists) {
       // Create new message DOM element
       var messageDivs = buildMessageDomElements(newPayload, isUser);
       var chatBoxElement = document.querySelector(settings.selectors.chatBox);
       var previousLatest = chatBoxElement
-          .querySelectorAll((isUser ? settings.selectors.fromUser
-              : settings.selectors.fromWatson)
-              + settings.selectors.latest);
+        .querySelectorAll((isUser ? settings.selectors.fromUser
+          : settings.selectors.fromWatson)
+        + settings.selectors.latest);
       // Previous "latest" message is no longer the most recent
       if (previousLatest) {
-        Common.listForEach(previousLatest, function(element) {
+        Common.listForEach(previousLatest, function (element) {
           element.classList.remove('latest');
         });
       }
 
-      messageDivs.forEach(function(currentDiv) {
+      messageDivs.forEach(function (currentDiv) {
         chatBoxElement.appendChild(currentDiv);
         // Class to start fade in animation
         currentDiv.classList.add('load');
       });
-      
+
       //EDIN
-      if(newPayload.esSaludo == false){
+      if (newPayload.esSaludo == false) {
         var seccionFeedback = document.getElementById('feedback');
         seccionFeedback.style.display = 'inline-block';
       }
@@ -245,35 +254,35 @@ function guardaFeedback(){
   function buildMessageDomElements(newPayload, isUser) {
     var textArray = isUser ? newPayload.input.text : newPayload.texto;
     emotionClass = 'top';
-console.log("buildMessageDomElements");
+    console.log("buildMessageDomElements");
     if (Object.prototype.toString.call(textArray) !== '[object Array]') {
-      textArray = [ textArray ];
+      textArray = [textArray];
     }
     var messageArray = [];
 
-    textArray.forEach(function(currentText) {
+    textArray.forEach(function (currentText) {
       if (currentText && currentText.trim() !== '') {
         var messageJson = {
           // <div class='segments'>
           'tagName': 'div',
-          'classNames': [ 'segments' ],
-          'children': [ {
+          'classNames': ['segments'],
+          'children': [{
             // <div class='from-user/from-watson latest'>
             'tagName': 'div',
             // AW - change colour of watson tag
-            'classNames': [ (isUser ? 'from-user' : 'from-watson'), 'latest',
-                ((messageArray.length === 0) ? emotionClass : 'sub') ],
-            'children': [ {
+            'classNames': [(isUser ? 'from-user' : 'from-watson'), 'latest',
+            ((messageArray.length === 0) ? emotionClass : 'sub')],
+            'children': [{
               // <div class='message-inner'>
               'tagName': 'div',
-              'classNames': [ 'message-inner' ],
-              'children': [ {
+              'classNames': ['message-inner'],
+              'children': [{
                 // <p>{messageText}</p>
                 'tagName': 'p',
                 'text': currentText
-              } ]
-            } ]
-          } ]
+              }]
+            }]
+          }]
         };
         messageArray.push(Common.buildDomElement(messageJson));
       }
@@ -293,7 +302,7 @@ console.log("buildMessageDomElements");
 
     // Scroll to the latest message sent by the user
     var scrollEl = scrollingChat.querySelector(settings.selectors.fromUser
-        + settings.selectors.latest);
+      + settings.selectors.latest);
     if (scrollEl) {
       scrollingChat.scrollTop = scrollEl.offsetTop;
     }
@@ -306,16 +315,20 @@ console.log("buildMessageDomElements");
       // Retrieve the context from the previous server response
       var context = {};
       // context.test = "TEST";
-console.log("ENTER");
+      console.log("ENTER");
 
       var latestResponse = Api.getResponsePayload();
-      console.log("ultima respuesta:" +latestResponse);
+      console.log("ultima respuesta:" + latestResponse);
       if (latestResponse) {
         //window.alert("La respuesta es:" +latestResponse);
-        console.log("ultima respuesta:" +latestResponse);
+        console.log("ultima respuesta:" + latestResponse);
         console.log("*************ESTABLECIENDO CONTEXTO*************");
         context = latestResponse;
       }
+
+      //EDIN
+      //SOBREESCRIBO CONTEXT
+      //context = document.getElementById("convIdAux").value;
 
       // Send the user message
       Api.sendRequest(inputBox.value, context);
