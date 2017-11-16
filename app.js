@@ -107,7 +107,7 @@ app.get('/mensaje', function(req, res) {
     console.log(query);
     console.log(url_parts.query.contexto);
     console.log("***********************************************************************************");
-    if (url_parts.query.contexto.legth>0)
+    if (url_parts.query.contexto.length>0)
       {console.log(JSON.parse(url_parts.query.contexto));
       var contexto=JSON.parse(url_parts.query.contexto);
       contexto.texto="";
