@@ -1,15 +1,5 @@
 [
     {
-        "id": "c894e6d0.5f52e",
-        "type": "comment",
-        "z": "819c1ddd.9c947",
-        "name": "Http Response",
-        "info": "",
-        "x": 106,
-        "y": 563,
-        "wires": []
-    },
-    {
         "id": "60e243e2.6a730c",
         "type": "comment",
         "z": "819c1ddd.9c947",
@@ -80,14 +70,14 @@
         "id": "3de5cee.4d981b2",
         "type": "inject",
         "z": "819c1ddd.9c947",
-        "name": "Happy feedback",
+        "name": "Despedida",
         "topic": "",
-        "payload": "These new nodes are awesome! I love the way they are used in the new flows!",
+        "payload": "adios",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 144.7731170654297,
+        "x": 124.77311706542969,
         "y": 188.63186645507812,
         "wires": [
             [
@@ -211,7 +201,7 @@
         "type": "function",
         "z": "819c1ddd.9c947",
         "name": "Set Conversation Input",
-        "func": "//SI EL MENSAJE DE ENTRADA ES VACIO ESTABLECE UNA BIENVENIDA\nif (msg.payload.texto===\" \")\n{\n    msg.payload.texto=\"bienvenida\";\n}\n\n//Mensaje\nmsg.payload = msg.payload.texto;\n//Contexto\n//msg.params.context=\n//User\n//msg.user=\n\n\nreturn msg;",
+        "func": "//SI EL MENSAJE DE ENTRADA ES VACIO ESTABLECE UNA BIENVENIDA\nif (msg.payload.texto===\" \")\n{\n    msg.payload.texto=\"bienvenida\";\n}\n\n//Mensaje\n\nmsg.payload = msg.payload.texto;\n\n \n//Contexto\n//msg.params.context=\n//User\n//msg.user=\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 361.5,
@@ -243,6 +233,16 @@
         "headers": {},
         "x": 503,
         "y": 627,
+        "wires": []
+    },
+    {
+        "id": "c894e6d0.5f52e",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "Http Response",
+        "info": "",
+        "x": 106,
+        "y": 563,
         "wires": []
     },
     {
@@ -278,7 +278,7 @@
         "type": "function",
         "z": "819c1ddd.9c947",
         "name": "Set Conversation Output",
-        "func": "//Carga objeto de respuesta\nvar respuesta = {};\nrespuesta.texto = msg.payload.output.text[0];\nrespuesta.contexto = msg.payload.context.conversation_id;\nrespuesta.esSaludo = false;\n\n//Valida si la respuesta es saludo o bienvenida\nif (msg.payload.intents.length===1){\n    if(msg.payload.intents[0].intent === \"saludo\" || msg.payload.intents[0].intent === \"bienvenida\"){\n        respuesta.esSaludo = true;\n    }\n}\n\n//Envia la respuesta como payload\nmsg.payload = respuesta;\n\nreturn msg;",
+        "func": "//Carga objeto de respuesta\nvar respuesta = {};\nrespuesta.texto = msg.payload.output.text[0];\nrespuesta.contexto = msg.payload.context;\nrespuesta.muestraFeedback = false;\n\n//Valida si la respuesta es saludo o bienvenida\nif (msg.payload.intents.length===1){\n    if(msg.payload.intents[0].intent === \"despedida\" || msg.payload.intents[0].intent === \"bienvenida\"){\n        respuesta.muestraFeedback = true;\n    }\n}\n\n//Envia la respuesta como payload\nmsg.payload = respuesta;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 227.5,
