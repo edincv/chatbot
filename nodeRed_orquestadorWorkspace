@@ -1,0 +1,266 @@
+[
+    {
+        "id": "404fe757.6e732",
+        "type": "comment",
+        "z": "f3aaec39.7d116",
+        "name": "TEST - Conversation IN",
+        "info": "",
+        "x": 140,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "16040dad.001c0a",
+        "type": "inject",
+        "z": "f3aaec39.7d116",
+        "name": "Test #obtener_ahorro",
+        "topic": "",
+        "payload": "¿cómo abro una cuenta de ahorro?",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 243.0231170654297,
+        "y": 79.38186454772949,
+        "wires": [
+            [
+                "2a929027.41a6d8"
+            ]
+        ]
+    },
+    {
+        "id": "82153ed3.fa197",
+        "type": "inject",
+        "z": "f3aaec39.7d116",
+        "name": "Test #ayuda",
+        "topic": "",
+        "payload": "quien me puede ayudar?",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 136.85646057128906,
+        "y": 115.9652099609375,
+        "wires": [
+            [
+                "2a929027.41a6d8"
+            ]
+        ]
+    },
+    {
+        "id": "93205df2.b5",
+        "type": "inject",
+        "z": "f3aaec39.7d116",
+        "name": "Test #balance_ahorro",
+        "topic": "",
+        "payload": "cuanto tengo en mi cuenta de ahorro?",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 185.2731170654297,
+        "y": 152.8818655014038,
+        "wires": [
+            [
+                "2a929027.41a6d8"
+            ]
+        ]
+    },
+    {
+        "id": "800be3e2.60191",
+        "type": "inject",
+        "z": "f3aaec39.7d116",
+        "name": "Test #contacto",
+        "topic": "",
+        "payload": "como los contacto?",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 164.7731170654297,
+        "y": 188.63186645507812,
+        "wires": [
+            [
+                "2a929027.41a6d8"
+            ]
+        ]
+    },
+    {
+        "id": "951ff100.10de98",
+        "type": "comment",
+        "z": "f3aaec39.7d116",
+        "name": "Watson Conversation Router",
+        "info": "",
+        "x": 160,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "a94fce46.4ec748",
+        "type": "watson-conversation-v1",
+        "z": "f3aaec39.7d116",
+        "name": "Router",
+        "workspaceid": "64cee549-cb94-44e2-bf3b-c3b64e5af1aa",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://gateway.watsonplatform.net/conversation/api",
+        "x": 206,
+        "y": 336,
+        "wires": [
+            [
+                "b6205b87.75c1a",
+                "3f47868e.4feb7a"
+            ]
+        ]
+    },
+    {
+        "id": "b6205b87.75c1a",
+        "type": "debug",
+        "z": "f3aaec39.7d116",
+        "name": "LOG Router Output",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 454.5,
+        "y": 284,
+        "wires": []
+    },
+    {
+        "id": "4e761237.c7f7d4",
+        "type": "comment",
+        "z": "f3aaec39.7d116",
+        "name": "Watson Conversation",
+        "info": "",
+        "x": 140,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "c2e734a3.d31ed",
+        "type": "watson-conversation-v1",
+        "z": "f3aaec39.7d116",
+        "name": "Conversation",
+        "workspaceid": "",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://gateway.watsonplatform.net/conversation/api",
+        "x": 226,
+        "y": 496,
+        "wires": [
+            [
+                "c58d4208.35e52"
+            ]
+        ]
+    },
+    {
+        "id": "c58d4208.35e52",
+        "type": "debug",
+        "z": "f3aaec39.7d116",
+        "name": "LOG Conversation Output",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 474.5,
+        "y": 444,
+        "wires": []
+    },
+    {
+        "id": "2a929027.41a6d8",
+        "type": "link out",
+        "z": "f3aaec39.7d116",
+        "name": "testRouter",
+        "links": [
+            "a357c2f8.5a192"
+        ],
+        "x": 447.5,
+        "y": 118.75,
+        "wires": []
+    },
+    {
+        "id": "a357c2f8.5a192",
+        "type": "link in",
+        "z": "f3aaec39.7d116",
+        "name": "testRouterConvIN",
+        "links": [
+            "2a929027.41a6d8"
+        ],
+        "x": 84.5,
+        "y": 340.5,
+        "wires": [
+            [
+                "a94fce46.4ec748",
+                "ca861745.2b493"
+            ]
+        ]
+    },
+    {
+        "id": "3f47868e.4feb7a",
+        "type": "function",
+        "z": "f3aaec39.7d116",
+        "name": "",
+        "func": "//Carga objeto de respuesta\n//var respuesta = {};\n//respuesta.texto = msg.payload.output.text[0];\nmsg.params = { \"workspace_id\": msg.payload.context.workspace_id};\nmsg.payload = msg.payload.input.text;\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "c2e734a3.d31ed",
+                "b8758a91.56324"
+            ]
+        ]
+    },
+    {
+        "id": "ca861745.2b493",
+        "type": "debug",
+        "z": "f3aaec39.7d116",
+        "name": "LOG Router IN",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 184.5,
+        "y": 385.75,
+        "wires": []
+    },
+    {
+        "id": "b8758a91.56324",
+        "type": "debug",
+        "z": "f3aaec39.7d116",
+        "name": "LOG ",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 627.5,
+        "y": 332.75,
+        "wires": []
+    },
+    {
+        "id": "397f6c12.2d85ec",
+        "type": "change",
+        "z": "f3aaec39.7d116",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "sas",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 135.5,
+        "y": 592,
+        "wires": [
+            []
+        ]
+    }
+]
