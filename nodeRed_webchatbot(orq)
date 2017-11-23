@@ -1,0 +1,542 @@
+[
+    {
+        "id": "60e243e2.6a730c",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "TEST - Conversation IN",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "193d4a4.f54eeb6",
+        "type": "inject",
+        "z": "819c1ddd.9c947",
+        "name": "Hola",
+        "topic": "",
+        "payload": "Hola",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 173.0231170654297,
+        "y": 79.38186454772949,
+        "wires": [
+            [
+                "c455b9c1.edfce8"
+            ]
+        ]
+    },
+    {
+        "id": "aeca709a.e65208",
+        "type": "inject",
+        "z": "819c1ddd.9c947",
+        "name": "Cómo puedo cotizar en el Infonavit.",
+        "topic": "",
+        "payload": "Cómo puedo cotizar en el Infonavit.",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 186.85646057128906,
+        "y": 115.9652099609375,
+        "wires": [
+            [
+                "c455b9c1.edfce8"
+            ]
+        ]
+    },
+    {
+        "id": "feffd47e.a83ba",
+        "type": "inject",
+        "z": "819c1ddd.9c947",
+        "name": "Gracias",
+        "topic": "",
+        "payload": "gracias",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 115.27311706542969,
+        "y": 152.8818655014038,
+        "wires": [
+            [
+                "c455b9c1.edfce8"
+            ]
+        ]
+    },
+    {
+        "id": "3de5cee.4d981b2",
+        "type": "inject",
+        "z": "819c1ddd.9c947",
+        "name": "Despedida",
+        "topic": "",
+        "payload": "adios",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 124.77311706542969,
+        "y": 188.63186645507812,
+        "wires": [
+            [
+                "c455b9c1.edfce8"
+            ]
+        ]
+    },
+    {
+        "id": "c455b9c1.edfce8",
+        "type": "link out",
+        "z": "819c1ddd.9c947",
+        "name": "testConvIN",
+        "links": [
+            "b9c84c70.473fc"
+        ],
+        "x": 436.4543151855469,
+        "y": 115.13016510009766,
+        "wires": []
+    },
+    {
+        "id": "4a882e1d.c40fd",
+        "type": "watson-conversation-v1",
+        "z": "819c1ddd.9c947",
+        "name": "Conversacion",
+        "workspaceid": "",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://gateway.watsonplatform.net/conversation/api",
+        "x": 227,
+        "y": 659,
+        "wires": [
+            [
+                "8d3137c6.ee3618",
+                "37e81806.851518"
+            ]
+        ]
+    },
+    {
+        "id": "234367e9.84bdf",
+        "type": "link in",
+        "z": "819c1ddd.9c947",
+        "name": "",
+        "links": [
+            "589820cf.2cc7e",
+            "efc4d9ad.c5208"
+        ],
+        "x": 70.5,
+        "y": 659,
+        "wires": [
+            [
+                "4a882e1d.c40fd"
+            ]
+        ]
+    },
+    {
+        "id": "e4a06c64.aab988",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "Watson Conversation",
+        "info": "",
+        "x": 131,
+        "y": 603,
+        "wires": []
+    },
+    {
+        "id": "8d3137c6.ee3618",
+        "type": "debug",
+        "z": "819c1ddd.9c947",
+        "name": "LOG Conversation Output",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 465.5,
+        "y": 607,
+        "wires": []
+    },
+    {
+        "id": "d2fede0e.73cf1",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "Http Request",
+        "info": "",
+        "x": 91,
+        "y": 271,
+        "wires": []
+    },
+    {
+        "id": "2670916d.66f506",
+        "type": "http in",
+        "z": "819c1ddd.9c947",
+        "name": "Web Bot Vivienda",
+        "url": "/webbotvivienda",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 126,
+        "y": 319,
+        "wires": [
+            [
+                "6b913a82.55d41c",
+                "b75bce11.604d08"
+            ]
+        ]
+    },
+    {
+        "id": "589820cf.2cc7e",
+        "type": "link out",
+        "z": "819c1ddd.9c947",
+        "name": "testConvIN",
+        "links": [
+            "234367e9.84bdf",
+            "c10f6ba1.9fcdc",
+            "bb2a3985.e0a0e"
+        ],
+        "x": 666,
+        "y": 481,
+        "wires": []
+    },
+    {
+        "id": "6b913a82.55d41c",
+        "type": "function",
+        "z": "819c1ddd.9c947",
+        "name": "Set Conversation Router Input",
+        "func": "//SI EL MENSAJE DE ENTRADA ES VACIO ESTABLECE UNA BIENVENIDA\nif (msg.payload.texto===\" \")\n{\n    msg.payload.texto=\"bienvenida\";\n}\n\n//Mensaje\n\nmsg.payload = msg.payload.texto;\n\n \n//Contexto\n//msg.params.context=\n//User\n//msg.user=\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 381.5,
+        "y": 318,
+        "wires": [
+            [
+                "5be8a569.1b2a94"
+            ]
+        ]
+    },
+    {
+        "id": "b75bce11.604d08",
+        "type": "debug",
+        "z": "819c1ddd.9c947",
+        "name": "LOG Request",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 332.5,
+        "y": 273,
+        "wires": []
+    },
+    {
+        "id": "885af812.a33588",
+        "type": "http response",
+        "z": "819c1ddd.9c947",
+        "name": "Http Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 510,
+        "y": 818,
+        "wires": []
+    },
+    {
+        "id": "c894e6d0.5f52e",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "Http Response",
+        "info": "",
+        "x": 113,
+        "y": 754,
+        "wires": []
+    },
+    {
+        "id": "37e81806.851518",
+        "type": "link out",
+        "z": "819c1ddd.9c947",
+        "name": "fromConversation",
+        "links": [
+            "1528b979.288387"
+        ],
+        "x": 370.5,
+        "y": 658,
+        "wires": []
+    },
+    {
+        "id": "1528b979.288387",
+        "type": "link in",
+        "z": "819c1ddd.9c947",
+        "name": "toHttpResponse",
+        "links": [
+            "37e81806.851518",
+            "d5bef859.3b5cc8",
+            "121eea5e.9f784e"
+        ],
+        "x": 67.5,
+        "y": 819,
+        "wires": [
+            [
+                "cea1c94a.348b38"
+            ]
+        ]
+    },
+    {
+        "id": "cea1c94a.348b38",
+        "type": "function",
+        "z": "819c1ddd.9c947",
+        "name": "Set Conversation Output",
+        "func": "//Carga objeto de respuesta\nvar respuesta = {};\nrespuesta.texto = msg.payload.output.text[0];\nrespuesta.contexto = msg.payload.context;\nrespuesta.muestraFeedback = false;\n\n//Valida si la respuesta es saludo o bienvenida\nif (msg.payload.intents.length===1){\n    if(msg.payload.intents[0].intent === \"despedida\" || msg.payload.intents[0].intent === \"agradecimientos\"){\n        respuesta.muestraFeedback = true;\n    }\n}\n\n//Envia la respuesta como payload\nmsg.payload = respuesta;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 234.5,
+        "y": 819,
+        "wires": [
+            [
+                "885af812.a33588",
+                "7f117af1.a8a6dc"
+            ]
+        ]
+    },
+    {
+        "id": "7f117af1.a8a6dc",
+        "type": "debug",
+        "z": "819c1ddd.9c947",
+        "name": "LOG Response",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 507.5,
+        "y": 769,
+        "wires": []
+    },
+    {
+        "id": "bb89661.9eef498",
+        "type": "function",
+        "z": "819c1ddd.9c947",
+        "name": "Prepara Registro",
+        "func": "//PREPARA JSON\nmsg.payload =\n{\n    \"CONVID\": msg.payload.convid,\n    \"RATING\": msg.payload.rating,\n    \"DETALLE\": msg.payload.detalle,\n    \"PREGUNTA\": msg.payload.pregunta\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 357,
+        "y": 1024,
+        "wires": [
+            [
+                "addbc62e.ba77b",
+                "125b3b26.adbeed"
+            ]
+        ]
+    },
+    {
+        "id": "3a19e88.de11c98",
+        "type": "http in",
+        "z": "819c1ddd.9c947",
+        "name": "Feedback",
+        "url": "/webfeedback",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 107,
+        "y": 1024,
+        "wires": [
+            [
+                "bb89661.9eef498",
+                "c8afd085.897fd"
+            ]
+        ]
+    },
+    {
+        "id": "c8afd085.897fd",
+        "type": "debug",
+        "z": "819c1ddd.9c947",
+        "name": "LOG Feedback",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 347,
+        "y": 964,
+        "wires": []
+    },
+    {
+        "id": "125b3b26.adbeed",
+        "type": "http response",
+        "z": "819c1ddd.9c947",
+        "name": "Http Response",
+        "statusCode": "",
+        "headers": {},
+        "x": 627,
+        "y": 1024,
+        "wires": []
+    },
+    {
+        "id": "86030858.5cc518",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "Guarda Feedback",
+        "info": "",
+        "x": 117,
+        "y": 924,
+        "wires": []
+    },
+    {
+        "id": "addbc62e.ba77b",
+        "type": "dashDB out",
+        "z": "819c1ddd.9c947",
+        "dashDB": "e5edfa11.013f58",
+        "service": "_ext_",
+        "table": "BOTFEEDBACK",
+        "name": "BD Feedback",
+        "x": 627,
+        "y": 1084,
+        "wires": []
+    },
+    {
+        "id": "36c916b1.698502",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "TEST - dashDB IN",
+        "info": "",
+        "x": 117,
+        "y": 1164,
+        "wires": []
+    },
+    {
+        "id": "5c122470.c11bfc",
+        "type": "inject",
+        "z": "819c1ddd.9c947",
+        "name": "Prueba BD",
+        "topic": "",
+        "payload": "{\"CONVID\":\"conv123\",\"RATING\":\"correcto\",\"DETALLE\":\"prueba detalle\",\"PREGUNTA\":\"como obtengo un credito\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 167,
+        "y": 1224,
+        "wires": [
+            [
+                "bc47c022.157438"
+            ]
+        ]
+    },
+    {
+        "id": "359533a9.931b94",
+        "type": "link in",
+        "z": "819c1ddd.9c947",
+        "name": "",
+        "links": [
+            "bc47c022.157438"
+        ],
+        "x": 462,
+        "y": 1084,
+        "wires": [
+            [
+                "addbc62e.ba77b"
+            ]
+        ]
+    },
+    {
+        "id": "bc47c022.157438",
+        "type": "link out",
+        "z": "819c1ddd.9c947",
+        "name": "testDashIn",
+        "links": [
+            "359533a9.931b94"
+        ],
+        "x": 282,
+        "y": 1224,
+        "wires": []
+    },
+    {
+        "id": "b9c84c70.473fc",
+        "type": "link in",
+        "z": "819c1ddd.9c947",
+        "name": "convRouterIN",
+        "links": [
+            "5be8a569.1b2a94",
+            "c455b9c1.edfce8"
+        ],
+        "x": 56.5,
+        "y": 481.5,
+        "wires": [
+            [
+                "c81acc1.50b5ab"
+            ]
+        ]
+    },
+    {
+        "id": "3db03e90.9f0482",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "Watson Conversation (Workspace Orq)",
+        "info": "",
+        "x": 167,
+        "y": 415,
+        "wires": []
+    },
+    {
+        "id": "c81acc1.50b5ab",
+        "type": "watson-conversation-v1",
+        "z": "819c1ddd.9c947",
+        "name": "Conversation Router",
+        "workspaceid": "f5c9e8e9-0a16-4027-9b88-2448264b7b94",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://gateway.watsonplatform.net/conversation/api",
+        "x": 212.5,
+        "y": 481.75,
+        "wires": [
+            [
+                "a1b12709.1b474",
+                "815bde0c.397ad"
+            ]
+        ]
+    },
+    {
+        "id": "815bde0c.397ad",
+        "type": "function",
+        "z": "819c1ddd.9c947",
+        "name": "Set Conversation Input",
+        "func": "msg.params = { \"workspace_id\": msg.payload.context.workspace_id};\nmsg.payload = msg.payload.input.text;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 484.5,
+        "y": 481,
+        "wires": [
+            [
+                "589820cf.2cc7e"
+            ]
+        ]
+    },
+    {
+        "id": "a1b12709.1b474",
+        "type": "debug",
+        "z": "819c1ddd.9c947",
+        "name": "LOG Conversation Router Output",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 512,
+        "y": 425,
+        "wires": []
+    },
+    {
+        "id": "5be8a569.1b2a94",
+        "type": "link out",
+        "z": "819c1ddd.9c947",
+        "name": "",
+        "links": [
+            "b9c84c70.473fc"
+        ],
+        "x": 606.5,
+        "y": 315.75,
+        "wires": []
+    },
+    {
+        "id": "e5edfa11.013f58",
+        "type": "dashDB",
+        "z": "",
+        "hostname": "dashdb-entry-yp-dal09-09.services.dal.bluemix.net",
+        "db": "BLUDB",
+        "port": "50000",
+        "name": "Dash DB Infonavit"
+    }
+]
