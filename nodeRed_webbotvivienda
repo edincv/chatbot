@@ -1,5 +1,25 @@
 [
     {
+        "id": "4a882e1d.c40fd",
+        "type": "watson-conversation-v1",
+        "z": "819c1ddd.9c947",
+        "name": "Conversacion",
+        "workspaceid": "",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://gateway.watsonplatform.net/conversation/api",
+        "x": 227,
+        "y": 659,
+        "wires": [
+            [
+                "8d3137c6.ee3618",
+                "37e81806.851518"
+            ]
+        ]
+    },
+    {
         "id": "60e243e2.6a730c",
         "type": "comment",
         "z": "819c1ddd.9c947",
@@ -91,33 +111,11 @@
         "z": "819c1ddd.9c947",
         "name": "testConvIN",
         "links": [
-            "234367e9.84bdf",
-            "c10f6ba1.9fcdc",
-            "bb2a3985.e0a0e"
+            "b9c84c70.473fc"
         ],
         "x": 436.4543151855469,
         "y": 115.13016510009766,
         "wires": []
-    },
-    {
-        "id": "4a882e1d.c40fd",
-        "type": "watson-conversation-v1",
-        "z": "819c1ddd.9c947",
-        "name": "Conversacion",
-        "workspaceid": "667e7f78-290c-41d3-9785-09aaa72cdba8",
-        "multiuser": false,
-        "context": true,
-        "empty-payload": false,
-        "default-endpoint": true,
-        "service-endpoint": "https://gateway.watsonplatform.net/conversation/api",
-        "x": 220,
-        "y": 468,
-        "wires": [
-            [
-                "8d3137c6.ee3618",
-                "37e81806.851518"
-            ]
-        ]
     },
     {
         "id": "234367e9.84bdf",
@@ -126,11 +124,10 @@
         "name": "",
         "links": [
             "589820cf.2cc7e",
-            "c455b9c1.edfce8",
             "efc4d9ad.c5208"
         ],
-        "x": 63.5,
-        "y": 468,
+        "x": 70.5,
+        "y": 659,
         "wires": [
             [
                 "4a882e1d.c40fd"
@@ -143,8 +140,8 @@
         "z": "819c1ddd.9c947",
         "name": "Watson Conversation",
         "info": "",
-        "x": 124,
-        "y": 412,
+        "x": 131,
+        "y": 603,
         "wires": []
     },
     {
@@ -155,8 +152,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 458.5,
-        "y": 416,
+        "x": 465.5,
+        "y": 607,
         "wires": []
     },
     {
@@ -197,23 +194,23 @@
             "c10f6ba1.9fcdc",
             "bb2a3985.e0a0e"
         ],
-        "x": 538,
-        "y": 318,
+        "x": 666,
+        "y": 481,
         "wires": []
     },
     {
         "id": "6b913a82.55d41c",
         "type": "function",
         "z": "819c1ddd.9c947",
-        "name": "Set Conversation Input",
+        "name": "Set Conversation Router Input",
         "func": "//SI EL MENSAJE DE ENTRADA ES VACIO ESTABLECE UNA BIENVENIDA\nif (msg.payload.texto===\" \")\n{\n    msg.payload.texto=\"bienvenida\";\n}\n\n//Mensaje\n\nmsg.payload = msg.payload.texto;\n\n \n//Contexto\n//msg.params.context=\n//User\n//msg.user=\n\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 361.5,
+        "x": 381.5,
         "y": 318,
         "wires": [
             [
-                "589820cf.2cc7e"
+                "5be8a569.1b2a94"
             ]
         ]
     },
@@ -236,8 +233,8 @@
         "name": "Http Response",
         "statusCode": "",
         "headers": {},
-        "x": 503,
-        "y": 627,
+        "x": 510,
+        "y": 818,
         "wires": []
     },
     {
@@ -246,8 +243,8 @@
         "z": "819c1ddd.9c947",
         "name": "Http Response",
         "info": "",
-        "x": 106,
-        "y": 563,
+        "x": 113,
+        "y": 754,
         "wires": []
     },
     {
@@ -258,8 +255,8 @@
         "links": [
             "1528b979.288387"
         ],
-        "x": 363.5,
-        "y": 467,
+        "x": 370.5,
+        "y": 658,
         "wires": []
     },
     {
@@ -272,8 +269,8 @@
             "d5bef859.3b5cc8",
             "121eea5e.9f784e"
         ],
-        "x": 60.5,
-        "y": 628,
+        "x": 67.5,
+        "y": 819,
         "wires": [
             [
                 "cea1c94a.348b38"
@@ -288,8 +285,8 @@
         "func": "//Carga objeto de respuesta\nvar respuesta = {};\nrespuesta.texto = msg.payload.output.text[0];\nrespuesta.contexto = msg.payload.context;\nrespuesta.muestraFeedback = false;\n\n//Valida si la respuesta es saludo o bienvenida\nif (msg.payload.intents.length===1){\n    if(msg.payload.intents[0].intent === \"despedida\" || msg.payload.intents[0].intent === \"agradecimientos\"){\n        respuesta.muestraFeedback = true;\n    }\n}\n\n//Envia la respuesta como payload\nmsg.payload = respuesta;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 227.5,
-        "y": 628,
+        "x": 234.5,
+        "y": 819,
         "wires": [
             [
                 "885af812.a33588",
@@ -305,8 +302,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 500.5,
-        "y": 578,
+        "x": 507.5,
+        "y": 769,
         "wires": []
     },
     {
@@ -317,8 +314,8 @@
         "func": "//PREPARA JSON\nmsg.payload =\n{\n    \"CONVID\": msg.payload.convid,\n    \"RATING\": msg.payload.rating,\n    \"DETALLE\": msg.payload.detalle,\n    \"PREGUNTA\": msg.payload.pregunta\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 350,
-        "y": 820,
+        "x": 357,
+        "y": 1024,
         "wires": [
             [
                 "addbc62e.ba77b",
@@ -335,8 +332,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 100,
-        "y": 820,
+        "x": 107,
+        "y": 1024,
         "wires": [
             [
                 "bb89661.9eef498",
@@ -352,8 +349,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 340,
-        "y": 760,
+        "x": 347,
+        "y": 964,
         "wires": []
     },
     {
@@ -363,8 +360,8 @@
         "name": "Http Response",
         "statusCode": "",
         "headers": {},
-        "x": 620,
-        "y": 820,
+        "x": 627,
+        "y": 1024,
         "wires": []
     },
     {
@@ -373,8 +370,8 @@
         "z": "819c1ddd.9c947",
         "name": "Guarda Feedback",
         "info": "",
-        "x": 110,
-        "y": 720,
+        "x": 117,
+        "y": 924,
         "wires": []
     },
     {
@@ -385,8 +382,8 @@
         "service": "_ext_",
         "table": "BOTFEEDBACK",
         "name": "BD Feedback",
-        "x": 620,
-        "y": 880,
+        "x": 627,
+        "y": 1084,
         "wires": []
     },
     {
@@ -395,8 +392,8 @@
         "z": "819c1ddd.9c947",
         "name": "TEST - dashDB IN",
         "info": "",
-        "x": 110,
-        "y": 960,
+        "x": 117,
+        "y": 1164,
         "wires": []
     },
     {
@@ -410,8 +407,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 160,
-        "y": 1020,
+        "x": 167,
+        "y": 1224,
         "wires": [
             [
                 "bc47c022.157438"
@@ -426,8 +423,8 @@
         "links": [
             "bc47c022.157438"
         ],
-        "x": 455,
-        "y": 880,
+        "x": 462,
+        "y": 1084,
         "wires": [
             [
                 "addbc62e.ba77b"
@@ -442,8 +439,95 @@
         "links": [
             "359533a9.931b94"
         ],
-        "x": 275,
-        "y": 1020,
+        "x": 282,
+        "y": 1224,
+        "wires": []
+    },
+    {
+        "id": "b9c84c70.473fc",
+        "type": "link in",
+        "z": "819c1ddd.9c947",
+        "name": "convRouterIN",
+        "links": [
+            "5be8a569.1b2a94",
+            "c455b9c1.edfce8"
+        ],
+        "x": 56.5,
+        "y": 481.5,
+        "wires": [
+            [
+                "c81acc1.50b5ab"
+            ]
+        ]
+    },
+    {
+        "id": "3db03e90.9f0482",
+        "type": "comment",
+        "z": "819c1ddd.9c947",
+        "name": "Watson Conversation (Workspace Orq)",
+        "info": "",
+        "x": 167,
+        "y": 415,
+        "wires": []
+    },
+    {
+        "id": "c81acc1.50b5ab",
+        "type": "watson-conversation-v1",
+        "z": "819c1ddd.9c947",
+        "name": "Conversation Router",
+        "workspaceid": "f5c9e8e9-0a16-4027-9b88-2448264b7b94",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "default-endpoint": true,
+        "service-endpoint": "https://gateway.watsonplatform.net/conversation/api",
+        "x": 212.5,
+        "y": 481.75,
+        "wires": [
+            [
+                "a1b12709.1b474",
+                "815bde0c.397ad"
+            ]
+        ]
+    },
+    {
+        "id": "815bde0c.397ad",
+        "type": "function",
+        "z": "819c1ddd.9c947",
+        "name": "Set Conversation Input",
+        "func": "msg.params = { \"workspace_id\": msg.payload.context.workspace_id};\nmsg.payload = msg.payload.input.text;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 484.5,
+        "y": 481,
+        "wires": [
+            [
+                "589820cf.2cc7e"
+            ]
+        ]
+    },
+    {
+        "id": "a1b12709.1b474",
+        "type": "debug",
+        "z": "819c1ddd.9c947",
+        "name": "LOG Conversation Router Output",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 512,
+        "y": 425,
+        "wires": []
+    },
+    {
+        "id": "5be8a569.1b2a94",
+        "type": "link out",
+        "z": "819c1ddd.9c947",
+        "name": "",
+        "links": [
+            "b9c84c70.473fc"
+        ],
+        "x": 606.5,
+        "y": 315.75,
         "wires": []
     },
     {
